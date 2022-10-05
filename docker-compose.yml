@@ -1,24 +1,13 @@
 version: '3'
 services:
-    product-app:
-        container_name: product-app
-        image: sra/productservice
-        restart: on-failure
-        ports: 
-            - 9090:9090
-        environment: 
-            WAIT_HOSTS: mysql:3306
-        depends_on: 
-            - docker-mysql 
-            - coupon-app
     coupon-app:
         container_name: coupon-app
-        image: sra/couponservice
+        image: coupon-app
         restart: on-failure
         ports: 
             - 9091:9091
         environment: 
-            WAIT_HOSTS: mysql:3306
+            WAIT_HOSTS: docker-mysql:3306
         depends_on: 
             - docker-mysql
     docker-mysql:
